@@ -1,0 +1,56 @@
+
+<div class="flex justify-content-center">
+    <div class="form flex justify-content-center flex-column">
+        <h1 class="text-center">Add User Form</h1>
+        <form [formGroup]="userForm" (ngSubmit)="addUser()" novalidate class="flex flex-column">
+        <div class="field flex justify-content-between align-items-center">
+            <label for="firstName" class="block">First Name</label>
+            <input type="text" pInputText placeholder="First Name" formControlName="firstName" />
+        </div>
+        <small class="p-error block" *ngIf="
+                userForm.get('firstName')?.invalid && userForm.get('firstName')?.dirty
+            ">
+                First name is required
+        </small>
+        <div class="field flex justify-content-between align-items-center">
+            <label for="lastName" class="block">Last Name</label>
+            <input type="text" pInputText placeholder="Last Name" formControlName="lastName" />
+        </div>
+
+        <div class="field flex justify-content-between align-items-center">
+            <label for="email" class="block">Email</label>
+            <input type="email" pInputText placeholder="Email" formControlName="email" />
+        </div>
+    
+        <div formGroupName="address">
+            <h4>Address</h4>
+            <div class="field flex justify-content-between align-items-center">
+            <label for="street" class="block">Street</label>
+                <input type="text" pInputText placeholder="Street" formControlName="street" />
+            </div>
+            <div class="field flex justify-content-between align-items-center">
+                <label for="city" class="block">City</label>
+                <input type="text" pInputText placeholder="City" formControlName="city" />
+            </div>
+            <small class="p-error block" *ngIf="
+                userForm.get('address')?.get('city')?.invalid &&
+                userForm.get('address')?.get('city')?.dirty
+                ">
+                City is required
+            </small>
+            <div class="field flex justify-content-between align-items-center">
+                <label for="postCode" class="block">Postal Code</label>
+                <input type="text" pInputText placeholder="Postal Code" formControlName="postCode" />
+                <small class="p-error block" *ngIf="
+                    userForm.get('address')?.get('postCode')?.invalid &&
+                    userForm.get('address')?.get('postCode')?.dirty
+                    ">
+                    Postal Code is required
+                </small>
+            </div>
+        </div>
+    
+        <button pButton type="submit" label="Submit" [disabled]="userForm.invalid"></button>
+        </form>
+    </div>
+</div>
