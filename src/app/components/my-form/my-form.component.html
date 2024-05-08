@@ -32,22 +32,30 @@
                 <label for="city" class="block">City</label>
                 <input type="text" pInputText placeholder="City" formControlName="city" />
             </div>
+
+            <div class="field flex justify-content-between align-items-center">
+                <label for="country" class="block">Country</label>
+                <p-dropdown [options]="countryList" 
+                formControlName="country" placeholder="Select Country" optionLabel="name"
+	[showClear]="true"></p-dropdown>
+            </div>
+            
             <small class="p-error block" *ngIf="
-                userForm.get('address')?.get('city')?.invalid &&
-                userForm.get('address')?.get('city')?.dirty
+                userForm.get('address')?.get('country')?.invalid &&
+                userForm.get('address')?.get('country')?.dirty
                 ">
-                City is required
+                Country is required
             </small>
             <div class="field flex justify-content-between align-items-center">
                 <label for="postCode" class="block">Postal Code</label>
                 <input type="text" pInputText placeholder="Postal Code" formControlName="postCode" />
-                <small class="p-error block" *ngIf="
-                    userForm.get('address')?.get('postCode')?.invalid &&
-                    userForm.get('address')?.get('postCode')?.dirty
-                    ">
-                    Postal Code is required
-                </small>
             </div>
+            <small class="p-error block" *ngIf="
+                userForm.get('address')?.get('postCode')?.invalid &&
+                userForm.get('address')?.get('postCode')?.dirty
+                ">
+                Postal Code is required
+            </small>
         </div>
     
         <button pButton type="submit" label="Submit" [disabled]="userForm.invalid"></button>
